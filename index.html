@@ -15,7 +15,7 @@
     <main>
         <h1>TAROT</h1>
         <div><img src="https://images.vexels.com/media/users/3/227781/isolated/preview/4bea3a0c1c2c93e4f263b317f63eb864-cartas-de-taro-lua-traco-de-halloween.png" alt="CartasTarot" id="tarotcardindex"></div>
-        <p class="botao" id="botao0" onclick="PaginaTiragem()"> Tiragem Aleatória</p>
+        <p class="botao" onclick="PaginaTiragem()"> Tiragem Aleatória</p>
         <p class="botao">Fazer um jogo</p>
         <!-- 
         <p> Quantas Cartas: <input type="number" name="quantiCartas" id="IquantiCartas" max="5" required onchange="SortearCartas()"></p> 
@@ -27,17 +27,20 @@
     function PaginaTiragem(){  
         let quantCartas = document.getElementsByClassName("botao")[1] 
         quantCartas.style.backgroundColor = "wheat" 
-        quantCartas.innerHTML = `<p> Quantas Cartas: <input type="number" name="quantiCartas" id="IquantiCartas" max="5" required onchange="SortearCartas()"></p>` 
-            // conseguiria fazer isso sem determinar variável, só com o documento.getelement = estilo e html ??? É melhor com ou sem variável?
+        quantCartas.innerHTML = `<p class="botao"> Quantas Cartas: <input type="number" name="quantiCartas" id="IquantiCartas" min="1" max="5" required onchange=SortearCartas()></p>` 
+            // conseguiria fazer isso sem determinar variável, só com o documento.getelement = estilo e html ??? É melhor com ou sem va"riável?
+            //"window.location = 'cartasSorteadas.html';"
+            //"window.open('cartasSorteadas.html', '_self');"
             //seria melhor const ou let?
     }
     function SortearCartas(){
-        document.getElementsByClassName("botao")[0].innerHTML =`Mudou` 
+        
+        window.location = 'cartasSorteadas.html';
                 
             //Quando a pessoa colocar o número de cartas desejadas 
             //Por enquanto sei que ta funcionando, tenho que descobrir como abrir o link da página de cartas sorteadas 
-            // 1. como abrir a nova página HTML a partir da OnChange
-            // 2. como sortear as 78 cartas e colocá-las no meu código
+            // 1. a partir do valor de IquantiCartas, embaralhar as cartas do arquivo e mostrar na página
+            // como sortear as 78 cartas e colocá-las no meu código
             // 3. como posicionar as cartas sorteadas, se 1 carta fica uma carta no meio, se 2 ou 3 lado a lado, se 4 duas em cima e duas embaixo, se 5 faz o circulo.
             // 4. adicionar botão de voltar
     }
