@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarot</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="https://icons.iconarchive.com/icons/iconarchive/fairy-tale/16/Hero-Magic-Book-icon.png">
+    <link rel="shortcut icon" href="imgs/FaviconMagicBook.png">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body> 
@@ -14,35 +14,39 @@
     </header>
     <main>
         <h1>TAROT</h1>
-        <div><img src="https://images.vexels.com/media/users/3/227781/isolated/preview/4bea3a0c1c2c93e4f263b317f63eb864-cartas-de-taro-lua-traco-de-halloween.png" alt="CartasTarot" id="tarotcardindex"></div>
-        <p class="botao" onclick="PaginaTiragem()"> Tiragem Aleatória</p>
-        <p class="botao">Fazer um jogo</p>
-        <!-- 
-        <p> Quantas Cartas: <input type="number" name="quantiCartas" id="IquantiCartas" max="5" required onchange="SortearCartas()"></p> 
-        -->
-        
+        <div><img src="imgs/IndexTarotCard.webp" alt="CartasTarot" id="tarotcardindex"></div>
+        <button class="botao" onclick="PaginaTiragem()"> Tiragem Aleatória</button>
+        <button class="botao">Fazer um jogo</button>
+        <br>
     </main>
 </body>
 <script>
     function PaginaTiragem(){  
-        let quantCartas = document.getElementsByClassName("botao")[1] 
-        quantCartas.style.backgroundColor = "wheat" 
-        quantCartas.innerHTML = `<p class="botao"> Quantas Cartas: <input type="number" name="quantiCartas" id="IquantiCartas" min="1" max="5" required onchange=SortearCartas()></p>` 
-            // conseguiria fazer isso sem determinar variável, só com o documento.getelement = estilo e html ??? É melhor com ou sem va"riável?
-            //"window.location = 'cartasSorteadas.html';"
-            //"window.open('cartasSorteadas.html', '_self');"
-            //seria melhor const ou let?
-    }
-    function SortearCartas(){
+        let botaoquantCartas = document.getElementsByClassName("botao")[1] 
+        botaoquantCartas.classList.add("botaoQuantCartas");
+        botaoquantCartas.innerHTML = `
+            <p>
+                <label for="IbotaoquantCartas">Quantas cartas:</label>
+                <input type="number" name="botaoquantCartas" id="IbotaoquantCartas" min="1" max="5" required >
+                <button id="botaoSortear" onclick="SortearCartas()"> Sortear </button>
+            </p> `
+    }        
+
+    async function SortearCartas(){ 
+        const quantcartas = parseInt(document.getElementById("IbotaoquantCartas").value);
         
+        if (!quantcartas || quantcartas < 1 || quantcartas > 5) {
+            alert("Escolha um número entre 1 e 5.");
+        return;
+        } 
         window.location = 'cartasSorteadas.html';
-                
-            //Quando a pessoa colocar o número de cartas desejadas 
-            //Por enquanto sei que ta funcionando, tenho que descobrir como abrir o link da página de cartas sorteadas 
-            // 1. a partir do valor de IquantiCartas, embaralhar as cartas do arquivo e mostrar na página
-            // como sortear as 78 cartas e colocá-las no meu código
+
+    }
+            
+            // A partir do valor inserido no input IquantiCartas, embaralhar as cartas do arquivo cards.json e mostrar na página os elementos que foram escolhidos
+            // 1. Conectar json com Fetch
+            // 2. como sortear os 78 elementos do json e escolher apenas a quantidade inserida no iquanticartas
             // 3. como posicionar as cartas sorteadas, se 1 carta fica uma carta no meio, se 2 ou 3 lado a lado, se 4 duas em cima e duas embaixo, se 5 faz o circulo.
             // 4. adicionar botão de voltar
-    }
 </script>
 </html>

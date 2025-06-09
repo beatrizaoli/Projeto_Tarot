@@ -39,7 +39,7 @@ h1 {
     margin: 30px 0px;
 }
 
-main > p {
+main > button {
     background-color: #af2323b7;
     border-radius: 10px;
     display: block;
@@ -51,15 +51,28 @@ main > p {
     border: 0.5px solid rgba(0, 0, 0, 0.4);
 }
 
-main > p:hover {
+main > button:hover {
     background-color: wheat;
 }
 
-#IquantiCartas {
+#IbotaoquantCartas {
     height: 40px;
     width: 40px;
     font-size: 1.2em;
     text-align: center;
+}
+#botaoSortear {
+    font-size: 20px;
+    background-color:#af2323b7;
+    border: 0.7px solid rgba(0, 0, 0, 0.5); 
+    margin-left: 25px;
+    padding: 15px; 
+    border-radius: 10px; 
+    cursor: pointer; 
+}
+
+.botaoQuantCartas {
+    background-color: wheat;
 }
 
 
