@@ -9,5 +9,53 @@
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="cartas-container"></div>
 </body>
+<script>
+    async function carregarCartas() {
+      const inputcartas = parseInt(localStorage.getItem("quantCartas"));
+
+      if (!inputcartas || inputcartas < 1 || inputcartas > 5) {
+        document.getElementById("cartas-container").textContent = "Quantidade inválida.";
+        return;
+      }
+
+      try {
+        const resposta = await fetch("cards.json");
+        const cartas = await resposta.json();
+
+        for (let i = cartas.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [cartas[i], cartas[j]] = [cartas[j], cartas[i]];
+        }
+
+        const selecionadas = cartas.slice(0, inputcartas);
+
+        const container = document.getElementById("cartas-container");
+        selecionadas.forEach(carta => {
+          const div = document.createElement("div");
+          div.classList.add("carta");
+
+          const img = document.createElement("img");
+          img.src = carta.image;
+          img.alt = carta.name;
+
+          const h3 = document.createElement("h3");
+          h3.textContent = carta.name;
+
+          const p = document.createElement("p");
+          p.textContent = carta.description;
+
+          div.appendChild(img);
+          div.appendChild(h3);
+          div.appendChild(p);
+          container.appendChild(div);
+        });
+      } catch (erro) {
+        console.error("Erro ao carregar cartas:", erro);
+      }
+    }
+
+    carregarCartas();
+</script>
 </html>

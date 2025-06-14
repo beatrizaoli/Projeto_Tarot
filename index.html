@@ -22,50 +22,34 @@
 </body>
 <script>
     function PaginaTiragem(){  
-        let botaoquantCartas = document.getElementsByClassName("botao")[1] 
+        const botaoquantCartas = document.getElementsByClassName("botao")[1] 
         botaoquantCartas.classList.add("botaoQuantCartas");
         botaoquantCartas.innerHTML = `
             <p>
                 <label for="inputCartas">Quantas cartas:</label>
                 <input type="number" name="inputQuantCartas" id="inputCartas" min="1" max="5" required >
                 <button id="botaoSortear">Sortear</button>
-            </p> `
-    }        
+            </p> `;
+        const btnVoltar = document.createElement('button')
+        btnVoltar.innerHTML = "Voltar"
+        document.body.appendChild(btnVoltar)
+        btnVoltar.classList.add("btnVoltar")    
+        btnVoltar.addEventListener("click", ()=> {
+           botaoquantCartas.innerHTML = "Fazer um jogo";
+           botaoquantCartas.className = ("botao") 
+
+        })
      
-    const SortearCartas = document.getElementById("botaoSortear")
-    SortearCartas.addEventListener("click" , async() => {
-        const quantcartas = parseInt(document.getElementById("inputCartas").value);
-        
-        if (!quantcartas || quantcartas < 1 || quantcartas > 5) {
-            alert("Escolha um número entre 1 e 5.");
-        return;
-        } 
-
-        try {
-            const resposta = await fetch("cards.json");
-            const listacartas = await resposta.json();
-            const embaralhadas = embaralhar(listacartas);
-            const selecionadas = embaralhadas.slice(0, quantcartas);
-            localStorage.setItem("cartasSorteadas", JSON.stringify(selecionadas));
-            window.location.href = "cards.html";
-        } catch (erro) {
-        console.error("Erro ao carregar ou processar as cartas:", erro);
-        }
-    })
-
-    function embaralhar () {
-        for (let i = array.length -1; i>0; i--){
-            const j = Math.floor(Math.random() * (i+1)); 
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array
+        const btnSortear = document.getElementById("botaoSortear")
+        btnSortear.addEventListener("click" , () => { 
+            const inputcartas = parseInt(document.getElementById("inputCartas").value);
+            if (!inputcartas || inputcartas < 1 || inputcartas > 5) {
+                alert("Escolha um número entre 1 e 5.");
+                return;
+            } 
+            localStorage.setItem("quantCartas", inputcartas);
+            window.location.href = 'cartasSorteadas.html';
+        });
     }
-    
-            // window.location = 'cartasSorteadas.html';   
-            // A partir do valor inserido no input IquantiCartas, embaralhar as cartas do arquivo cards.json e mostrar na página os elementos que foram escolhidos
-            // 1. Conectar json com Fetch
-            // 2. como sortear os 78 elementos do json e escolher apenas a quantidade inserida no iquanticartas
-            // 3. como posicionar as cartas sorteadas, se 1 carta fica uma carta no meio, se 2 ou 3 lado a lado, se 4 duas em cima e duas embaixo, se 5 faz o circulo.
-            // 4. adicionar botão de voltar
 </script>
 </html>
