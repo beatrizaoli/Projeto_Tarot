@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartas Sorteadas</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleSorteadas.css">
     <link rel="shortcut icon" href="imgs/FaviconMagicBook.png">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="cartas-container"></div>
+  <header>
+        <p>beatrizaoli</p>
+    </header>
+    <main>
+      <h1>TAROT</h1>
+      <div id="cartas-container"></div>
+    </main>
 </body>
 <script>
     async function carregarCartas() {
@@ -40,14 +46,18 @@
           img.src = carta.image;
           img.alt = carta.name;
 
-          const h3 = document.createElement("h3");
-          h3.textContent = carta.name;
+          const h2 = document.createElement("h2");
+          h2.textContent = carta.name;
 
           const p = document.createElement("p");
           p.textContent = carta.description;
 
+          img.addEventListener("click", () => {
+              p.style.display = p.style.display === "none" ? "block" : "none";
+            });
+            
           div.appendChild(img);
-          div.appendChild(h3);
+          div.appendChild(h2);
           div.appendChild(p);
           container.appendChild(div);
         });
