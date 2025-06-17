@@ -19,7 +19,7 @@
 </body>
 <script>
     async function carregarCartas() {
-      const inputcartas = parseInt(localStorage.getItem("quantCartas"));
+      let inputcartas = parseInt(localStorage.getItem("quantCartas"));
 
       if (!inputcartas || inputcartas < 1 || inputcartas > 5) {
         document.getElementById("cartas-container").textContent = "Quantidade inválida.";
@@ -35,10 +35,10 @@
           [cartas[i], cartas[j]] = [cartas[j], cartas[i]];
         }
 
-        const selecionadas = cartas.slice(0, inputcartas);
+        let selecionadas = cartas.slice(0, inputcartas);
 
         const container = document.getElementById("cartas-container");
-        selecionadas.forEach(carta => {
+        function mostrarCarta (carta) {
           const div = document.createElement("div");
           div.classList.add("carta");
 
@@ -54,18 +54,40 @@
 
           img.addEventListener("click", () => {
               p.style.display = p.style.display === "none" ? "block" : "none";
-            });
-            
+            }); //CORRIGIR 
+
           div.appendChild(img);
           div.appendChild(h2);
           div.appendChild(p);
           container.appendChild(div);
-        });
+        };
+        
+        selecionadas.forEach(carta => mostrarCarta(carta)); // Para cada carta dentro do array selecionadas, execute a função mostrarCarta(carta)
+
+        const btnADD = document.createElement("button");
+        btnADD.innerHTML = "Adicionar 1 carta"
+        btnADD.id = "adicionarCarta"
+        document.body.appendChild(btnADD);
+        if (inputcartas >= 5) {btnADD.style.display = "none";}
+        
+        let proximaCarta = inputcartas; //indica a quantidade escolhida que será o indice da próxima carta, ver outras frmas de fazer isso
+        
+        btnADD.addEventListener("click", ()=>{
+          const novaCarta = cartas[proximaCarta] 
+          mostrarCarta(novaCarta);
+          proximaCarta++;
+          inputcartas++;
+          if (inputcartas >= 5) {
+            alert ("Chegou o limite de 5 cartas")
+            btnADD.style.display = "none";
+            return;
+            }
+          })
+        
       } catch (erro) {
         console.error("Erro ao carregar cartas:", erro);
       }
     }
-
     carregarCartas();
 </script>
 </html>
