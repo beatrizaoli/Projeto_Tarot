@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-image: linear-gradient(45deg, #9d1924, #f27f3d, #731f1f);
     background-size: cover;
