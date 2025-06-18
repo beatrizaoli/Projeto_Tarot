@@ -76,7 +76,7 @@ main > button:hover {
 }
 .btnVoltar {
     margin: auto;
-    display: block;
+    display: none;
     padding: 0;
     background-color: transparent;
     border: 0;

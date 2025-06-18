@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarot</title>
-    <link rel="stylesheet" href="styleIndex.css">
+    <link rel="stylesheet" href="indexStyle.css">
     <link rel="shortcut icon" href="imgs/FaviconMagicBook.png">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 </head>
@@ -17,39 +17,9 @@
         <div><img src="imgs/IndexTarotCard.webp" alt="CartasTarot" id="tarotcardindex"></div>
         <button class="botao" id="TiragemAleatoria" onclick="PaginaTiragem()"> Tiragem Aleatória</button>
         <button class="botao">Fazer um jogo</button>
+        <button id="IbtnVoltar" class="btnVoltar">Voltar</button>
         <br>
     </main>
 </body>
-<script>
-    function PaginaTiragem(){  
-        const botaoquantCartas = document.getElementsByClassName("botao")[1] 
-        botaoquantCartas.classList.add("botaoQuantCartas");
-        botaoquantCartas.innerHTML = `
-            <p>
-                <label for="inputCartas">Quantas cartas:</label>
-                <input type="number" name="inputQuantCartas" id="inputCartas" min="1" max="5" required >
-                <button id="botaoSortear">Sortear</button>
-            </p> `;
-        const btnVoltar = document.createElement('button')
-        btnVoltar.innerHTML = "Voltar"
-        document.body.appendChild(btnVoltar)
-        btnVoltar.classList.add("btnVoltar")    
-        btnVoltar.addEventListener("click", ()=> {
-           botaoquantCartas.innerHTML = "Fazer um jogo";
-           botaoquantCartas.className = ("botao") 
-
-        })
-     
-        const btnSortear = document.getElementById("botaoSortear")
-        btnSortear.addEventListener("click" , () => { 
-            const inputcartas = parseInt(document.getElementById("inputCartas").value);
-            if (!inputcartas || inputcartas < 1 || inputcartas > 5) {
-                alert("Escolha um número entre 1 e 5.");
-                return;
-            } 
-            localStorage.setItem("quantCartas", inputcartas);
-            window.location.href = 'cartasSorteadas.html';
-        });
-    }
-</script>
+<script src="indexScript.js"> </script>
 </html>

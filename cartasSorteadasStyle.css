@@ -43,7 +43,14 @@ div > p {
     padding: 0px 50px  ;
 }
 
+.MostraDescricao{
+    display: block;
+}
+
+
 div > img {
+    width: 300px;
+    height: 500px;
     border: 10px solid rgba(255, 255, 255, 0.767);
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
