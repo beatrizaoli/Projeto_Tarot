@@ -12,6 +12,7 @@ Na primeira página há dois botões: “Tiragem Aleatória” e “Fazer um Jog
 - um campo para digitar a quantidade de cartas (com limite),
 - um botão “Sortear” e
 - um botão “Voltar”.
+
 Quando o usuário insere o número de cartas e clica em “Sortear”, esse valor é armazenado e o usuário é redirecionado para a próxima página.
 Nessa nova página: O arquivo cards.json com as cartas de Tarot é carregado, as cartas são embaralhadas aleatoriamente e as X primeiras cartas são selecionadas, sendo X o valor digitado pelo usuário.
 Cada carta é exibida na tela com nome e imagem. E, ao clicar na imagem, a descrição da carta é revelada. 
