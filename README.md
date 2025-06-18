@@ -20,6 +20,7 @@ Se o número de cartas sorteadas for menor que limite, aparece um botão “Adic
 
 
 Cronograma de desenvolvimento do projeto:
+
 Dia 1  (3/6)
 > Criar design inicial do projeto
 > Estruturar HTML, CSS e JS da primeira página 
